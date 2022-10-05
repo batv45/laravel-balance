@@ -37,7 +37,7 @@ trait HasBalance
      * @param  array $parameters
      * @return \Batv45\Balance\Balance
      */
-    public function increaseBalance(float $amount, string $description = null, Model $referenceable = null)
+    public function increaseBalance(int $amount, string $description = null, Model $referenceable = null)
     {
         $arr = [];
 
@@ -56,7 +56,7 @@ trait HasBalance
      * @param  array $parameters
      * @return \Batv45\Balance\Balance
      */
-    public function decreaseBalance(float $amount, string $description = null, Model $referenceable = null)
+    public function decreaseBalance(int $amount, string $description = null, Model $referenceable = null)
     {
         $arr = [];
 
@@ -75,7 +75,7 @@ trait HasBalance
      * @param  array $parameters
      * @return \Batv45\Balance\Balance
      */
-    public function modifyBalance(float $amount, array $parameters = [])
+    public function modifyBalance(int $amount, array $parameters = [])
     {
         return $this->createBalanceHistory($amount, $parameters);
     }
@@ -87,7 +87,7 @@ trait HasBalance
      * @param  array $parameters
      * @return \Batv45\Balance\Balance
      */
-    public function resetBalance(float $newAmount = null, $parameters = [])
+    public function resetBalance(int $newAmount = null, $parameters = [])
     {
         $this->balanceHistory()->delete();
 
@@ -126,7 +126,7 @@ trait HasBalance
      * @param  array  $parameters
      * @return \Batv45\Balance\Balance
      */
-    protected function createBalanceHistory(float $amount, array $parameters = [])
+    protected function createBalanceHistory(int $amount, array $parameters = [])
     {
         $reference = Arr::get($parameters, 'reference');
 
