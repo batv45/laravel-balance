@@ -16,7 +16,7 @@ class CreateBalanceHistoryTable extends Migration
         Schema::create('balance_history', function (Blueprint $table) {
             $table->id();
             $table->morphs('balanceable');
-            $table->bigInteger('balance')->default(0);
+            $table->bigInteger('amount')->default(0);
 
             //morphs referenceable nullable
             $table->string('referenceable_type')->nullable();
