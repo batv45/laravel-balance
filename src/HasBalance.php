@@ -153,7 +153,7 @@ trait HasBalance
      */
     public function balanceHistory()
     {
-        return $this->morphMany(Balance::class, 'balanceable');
+        return $this->morphMany(config('balance.model'), 'balanceable');
     }
 
     public function getBalanceTlAttribute()

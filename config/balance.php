@@ -12,5 +12,6 @@ return [
     */
 
     'table' => 'balance_history',
+    'model' => \Batv45\Balance\Balance::class
 
 ];
