@@ -3,7 +3,7 @@
     "version": "1.0.3",
     "description": "Maintains a history of balance movements in the eloquent models. This simple package will keep track of the balance of your models. You can increase, decrease, reset and set the balance. It is also possible to check if a model has a positive balance or no balance.",
     "keywords": [
-        "mreduar",
+        "batv45",
         "laravel",
         "laravel-balance",
         "balance",
@@ -15,14 +15,14 @@
     "type": "library",
     "authors": [
         {
-            "name": "Eduar Bastidas",
-            "email": "eduarbastidas10@gmail.com",
+            "name": "Batuhan OK",
+            "email": "activ45@hotmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+        "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
 		"cknow/laravel-money": "^7.0"
     },
     "autoload": {
