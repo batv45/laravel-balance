@@ -32,17 +32,13 @@ class Balance extends Model
         $this->setTable(config('balance.table', 'balance_history'));
     }
 
-    protected static function boot()
+    public function scopeSumBalance($query): void
     {
-        parent::boot();
         DB::statement('SET @varBalance = 0');
-
-        static::addGlobalScope('sumBalance', function ($builder) {
-            $builder->select(DB::raw('*, @varBalance := @varBalance + (`amount`) `balance`'));
-            if( self::$sumBalanceWithPaginate ){
-                $builder->offset(0)->limit(10); // for paginate
-            }
-        });
+        $query->select(DB::raw('*, @varBalance := @varBalance + (`amount`) `balance`'));
+        if( $this->sumBalanceWithPaginate ){
+            $query->offset(0)->limit(10); // for paginate
+        }
     }
 
     /**
