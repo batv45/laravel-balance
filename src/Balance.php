@@ -33,8 +33,10 @@ class Balance extends Model
 
     public function scopeSumBalance($query): void
     {
-        DB::statement('SET @varBalance = 0');
-        $query->select(DB::raw('*, @varBalance := @varBalance + (`amount`) `balance`'));
+        $query->select(DB::raw('balance_history.*,(SUM(T2.amount)) as balance'))
+            ->from('balance_history')
+            ->join('balance_history AS T2','T2.id','<=','balance_history.id')
+            ->groupBy('balance_history.id');
     }
 
     /**
