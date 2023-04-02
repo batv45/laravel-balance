@@ -31,13 +31,10 @@ class Balance extends Model
         $this->setTable(config('balance.table', 'balance_history'));
     }
 
-    public function scopeSumBalance($query,$forPaginate = false): void
+    public function scopeSumBalance($query): void
     {
         DB::statement('SET @varBalance = 0');
         $query->select(DB::raw('*, @varBalance := @varBalance + (`amount`) `balance`'));
-        if( $forPaginate ){
-            $query->offset(0)->limit(10); // for paginate
-        }
     }
 
     /**
