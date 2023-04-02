@@ -2,10 +2,12 @@
 
 namespace Batv45\Balance;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Balance extends Model
 {
+    protected $sumBalanceWithPaginate = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -28,6 +30,19 @@ class Balance extends Model
         parent::__construct($attributes);
 
         $this->setTable(config('balance.table', 'balance_history'));
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        DB::statement('SET @varBalance = 0');
+
+        static::addGlobalScope('sumBalance', function ($builder) {
+            $builder->select(DB::raw('*, @varBalance := @varBalance + (`amount`) `balance`'));
+            if( self::$sumBalanceWithPaginate ){
+                $builder->offset(0)->limit(10); // for paginate
+            }
+        });
     }
 
     /**
