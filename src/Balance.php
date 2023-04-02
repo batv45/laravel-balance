@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Balance extends Model
 {
-    protected $sumBalanceWithPaginate = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -32,11 +31,11 @@ class Balance extends Model
         $this->setTable(config('balance.table', 'balance_history'));
     }
 
-    public function scopeSumBalance($query): void
+    public function scopeSumBalance($query,$forPaginate = false): void
     {
         DB::statement('SET @varBalance = 0');
         $query->select(DB::raw('*, @varBalance := @varBalance + (`amount`) `balance`'));
-        if( $this->sumBalanceWithPaginate ){
+        if( $forPaginate ){
             $query->offset(0)->limit(10); // for paginate
         }
     }
