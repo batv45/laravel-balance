@@ -158,7 +158,7 @@ trait HasBalance
 
     public function getBalanceTlAttribute()
     {
-        $bal = intval($this->balance * 100);
+        $bal = intval($this->balance * config('balance.multiplier',1));
         return Money::TRY($bal)->formatByCurrencySymbol(false,'tr_TR');
     }
 }
