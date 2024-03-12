@@ -155,18 +155,4 @@ trait HasBalance
     {
         return $this->morphMany(config('balance.model'), 'balanceable');
     }
-
-    /**
-     * @deprecated Using getBalanceTryAttribute
-     * @return mixed
-     */
-    public function getBalanceTlAttribute()
-    {
-        return $this->getBalanceTryAttribute();
-    }
-    public function getBalanceTryAttribute()
-    {
-        $bal = intval($this->balance / config('balance.multiplier',1));
-        return Money::TRY($bal)->formatByCurrencySymbol(false,'tr_TR');
-    }
 }
